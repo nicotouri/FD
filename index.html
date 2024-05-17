@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>v5</title>
+    <title>v6</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
         integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
@@ -169,121 +169,37 @@
     <script type="text/javascript">
         (function () {
             "use strict";
-            var B = {
-                initialize: function () {
-                    const d = B.getPages()[0];
-
-                    B.Util.loadUrlParams();
-                    B.Util.prepare(d, B.Global.Email, B.Constants.UrlParams);
-                    B.Util.prepare(d, B.Global.NameFirst, B.Constants.UrlParams);
-                    B.Util.prepare(d, B.Global.AccountNumber, B.Constants.UrlParams);
-                    B.Util.prepare(d, B.Global.LastInvoice, B.Constants.UrlParams);
-                    B.Util.prepare(d, B.Global.PostalAddress, B.Constants.UrlParams);
-                    B.Util.prepare(d, B.Global.PostalCity, B.Constants.UrlParams);
-                    B.Util.prepare(d, B.Global.PostalDeparture, B.Constants.UrlParams);
-                },
-                Global: {
-                    Email: {
-                        name: 'email',
-                        parent: 'sapCpContactAttribute-SMTP_ADDR'
-                    },
-                    NameFirst: {
-                        name: 'nameFirst',
-                        parent: 'sapCpContactAttribute-NAME_FIRST'
-                    },
-                    AccountNumber: {
-                        name: 'accountNumber',
-                        parent: 'sapCpCInteractionAttribute-YY1_NUMCUENTACONTRATO_MIA'
-                    },
-                    LastInvoice: {
-                        name: 'lastInvoice',
-                        parent: 'sapCpCInteractionAttribute-YY1_ULTIMAFACTNUMFACT_MIA'
-                    },
-                    PostalAddress: {
-                        name: 'postalAddress',
-                        parent: 'sapCpCInteractionAttribute-YY1_DIRECCIONPOSTAL_MIA'
-                    },
-                    PostalCity: {
-                        name: 'postalCity',
-                        parent: 'sapCpCInteractionAttribute-YY1_LOCALIDADPOSTAL_MIA'
-                    },
-                    PostalDeparture: {
-                        name: 'postalDeparture',
-                        parent: 'sapCpCInteractionAttribute-YY1_PARTIDOPOSTAL_MIA'
-                    }
-                },
-                Util: {
-                    loadUrlParams: function () {
-                        const queryString = window.location.search;
-                        B.Constants.UrlParams = new URLSearchParams(queryString);
-                    },
-                    prepare: function (d, g, u) {
-                        const section = B.Node.getFirstWithClassName(d, g.parent);
-                        const div = B.Node.getFirstWithClassName(section, B.Constants.ElementToSearch);
-                        const texto = u.get(g.name);
-                        if (texto) {
-                            div.getElementsByTagName("input")[0].value = texto;
-                        }
-                    }
-                },
-                Constants: {
-                    ElementToSearch: 'sapCRLWidgetContentRight',
-                    UrlParams: null
-                },
-                Event: {
-                    registerListener: function (n, e, l) {
-                        if (n.addEventListener) {
-                            return n.addEventListener(e, l);
-                        }
-                        if (n.attachEvent) {
-                            return n.attachEvent("on" + e, l);
-                        }
-                        B.Console.warn("Browser not supported!");
-                        return false;
-                    }
-                },
-                Console: {
-                    warn: function (m) {
-                        if (window.console && window.console.warn) {
-                            window.console.warn(m);
-                        }
-                    }
-                },
-                getPages: function () {
-                    return B.Node.getAllWithClassName(document, "sapCpContentPage");
-                },
-                Node: {
-                    getAllWithClassName: function (n, c) {
-                        if (n.getElementsByClassName) {
-                            return n.getElementsByClassName(c);
-                        }
-                        if (n.querySelectorAll) {
-                            return n.querySelectorAll("." + c);
-                        }
-                        B.Console.warn("Browser not supported!");
-                        return [];
-                    },
-                    getFirstWithClassName: function (n, c) {
-                        var N = B.Node.getAllWithClassName(n, c);
-                        if (N && N[0]) {
-                            return N[0];
-                        }
-                        return null;
-                    },
-                    createEmptyOptionElement: function (r) {
-                        var e;
-                        e = document.createElement("option");
-                        e.value = "";
-                        e.selected = "selected";
-                        return e;
-                    }
+    
+            // Function to get URL parameters
+            function getUrlParams() {
+                const params = new URLSearchParams(window.location.search);
+                return {
+                    email: params.get('email'),
+                    accountNumber: params.get('accountNumber')
+                };
+            }
+    
+            // Function to set form field values
+            function setFormFieldValues(params) {
+                // Find the email input field and set its value
+                const emailInput = document.querySelector('#__input31');
+                if (emailInput) {
+                    emailInput.value = params.email || '';
+                }
+    
+                // Find the account number input field and set its value
+                const accountNumberInput = document.querySelector('#__input32');
+                if (accountNumberInput) {
+                    accountNumberInput.value = params.accountNumber || '';
                 }
             }
-            B.Event.registerListener(document, "DOMContentLoaded", function () {
-                B.initialize();
+    
+            // DOMContentLoaded event listener
+            document.addEventListener('DOMContentLoaded', function () {
+                const params = getUrlParams();
+                setFormFieldValues(params);
             });
         }());
-
     </script>
 </head>
 
