@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>v9</title>
+    <title>v10</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
         integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
@@ -211,16 +211,20 @@
     </script>
 
     <script>
-        //AUTO ENVIO
         document.addEventListener("DOMContentLoaded", function () {
             var form = document.getElementById("application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage");
             if (form) {
-                form.submit();
+                setTimeout(function () {
+                    form.submit();
+                    console.log("Adherido"); // Aquí puedes reemplazar por tu lógica para mostrar un mensaje visible
+                }, 15000); // 15 segundos en milisegundos
+
                 // Desactivar el listener después de enviar el formulario una vez
                 document.removeEventListener("DOMContentLoaded", arguments.callee);
             }
         });
     </script>
+
 </head>
 
 
