@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>v8</title>
+    <title>v9</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
         integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
@@ -164,7 +164,7 @@
     <link rel="stylesheet" href="./sapContentPage.css">
     <script type="text/javascript" src="./sapContentPage.js"></script>
 
-    
+
     <script type="text/javascript">
 
         // CARGA DE DATOS PARAMETROS 
@@ -211,13 +211,15 @@
     </script>
 
     <script>
-            //AUTO ENVIO
-            document.addEventListener("DOMContentLoaded", function () {
-                var form = document.getElementById("application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage");
-                if (form) {
-                    form.submit();
-                }
-            });
+        //AUTO ENVIO
+        document.addEventListener("DOMContentLoaded", function () {
+            var form = document.getElementById("application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage");
+            if (form) {
+                form.submit();
+                // Desactivar el listener después de enviar el formulario una vez
+                document.removeEventListener("DOMContentLoaded", arguments.callee);
+            }
+        });
     </script>
 </head>
 
@@ -456,7 +458,7 @@
         </div>
     </div>
 
-    
+
 </body>
 
 </html>
