@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>v7</title>
+    <title>v8</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
         integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
@@ -164,8 +164,61 @@
     <link rel="stylesheet" href="./sapContentPage.css">
     <script type="text/javascript" src="./sapContentPage.js"></script>
 
+    
+    <script type="text/javascript">
 
+        // CARGA DE DATOS PARAMETROS 
+        (function () {
+            "use strict";
 
+            // Function to get URL parameters
+            function getUrlParams() {
+                const params = new URLSearchParams(window.location.search);
+                return {
+                    email: params.get('email'),
+                    accountNumber: params.get('accountNumber')
+                };
+            }
+
+            // Function to set form field values
+            function setFormFieldValues(params) {
+                // Find the email input field and set its value
+                const emailInput = document.querySelector('#__input31');
+                if (emailInput) {
+                    emailInput.value = params.email || '';
+                    console.log("Email input found and set:", emailInput.value); // Debug line
+                } else {
+                    console.error("Email input not found"); // Debug line
+                }
+
+                // Find the account number input field and set its value
+                const accountNumberInput = document.querySelector('#__input32');
+                if (accountNumberInput) {
+                    accountNumberInput.value = params.accountNumber || '';
+                    console.log("Account number input found and set:", accountNumberInput.value); // Debug line
+                } else {
+                    console.error("Account number input not found"); // Debug line
+                }
+            }
+
+            // DOMContentLoaded event listener
+            document.addEventListener('DOMContentLoaded', function () {
+                const params = getUrlParams();
+                console.log("URL parameters:", params); // Debug line
+                setFormFieldValues(params);
+            });
+        }());
+    </script>
+
+    <script>
+            //AUTO ENVIO
+            document.addEventListener("DOMContentLoaded", function () {
+                var form = document.getElementById("application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage");
+                if (form) {
+                    form.submit();
+                }
+            });
+    </script>
 </head>
 
 
@@ -403,48 +456,7 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        (function () {
-            "use strict";
-
-            // Function to get URL parameters
-            function getUrlParams() {
-                const params = new URLSearchParams(window.location.search);
-                return {
-                    email: params.get('email'),
-                    accountNumber: params.get('accountNumber')
-                };
-            }
-
-            // Function to set form field values
-            function setFormFieldValues(params) {
-                // Find the email input field and set its value
-                const emailInput = document.querySelector('#__input31');
-                if (emailInput) {
-                    emailInput.value = params.email || '';
-                    console.log("Email input found and set:", emailInput.value); // Debug line
-                } else {
-                    console.error("Email input not found"); // Debug line
-                }
-
-                // Find the account number input field and set its value
-                const accountNumberInput = document.querySelector('#__input32');
-                if (accountNumberInput) {
-                    accountNumberInput.value = params.accountNumber || '';
-                    console.log("Account number input found and set:", accountNumberInput.value); // Debug line
-                } else {
-                    console.error("Account number input not found"); // Debug line
-                }
-            }
-
-            // DOMContentLoaded event listener
-            document.addEventListener('DOMContentLoaded', function () {
-                const params = getUrlParams();
-                console.log("URL parameters:", params); // Debug line
-                setFormFieldValues(params);
-            });
-        }());
-    </script>
+    
 </body>
 
 </html>
