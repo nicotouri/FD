@@ -185,17 +185,28 @@
     
     <script>
         // JavaScript para el contador
-        document.addEventListener("DOMContentLoaded", function () {
-            var counter = 10;
-            var interval = setInterval(function () {
-                counter--;
-                document.getElementById('counter').textContent = 'Por favor espere, estamos procesando la solicitud: ' + counter;
-                if (counter === 0) {
-                    clearInterval(interval);
-                    document.getElementById('loading-screen').style.display = 'none';
-                }
-            }, 1000);
-        });
+        document.addEventListener("DOMContentLoaded", function() {
+    var counter = 10;
+    var interval = setInterval(function() {
+        counter--;
+        document.getElementById('counter').textContent = 'Por favor espere, estamos procesando la solicitud: ' + counter;
+        if (counter === 0) {
+            clearInterval(interval);
+            document.getElementById('loading-screen').style.display = 'none';
+            // Obtener referencia al formulario
+            var form = document.getElementById('application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage');
+            // Agregar un evento al botón de enviar para manejar el envío del formulario
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                console.log('Formulario enviado!');
+            });
+            // Simular el clic en el botón de enviar del formulario
+            form.querySelector('button[type="button"]').click(); // Esto simula el clic en el botón enviar
+        }
+    }, 1000);
+});
+
+
     </script>
     <script type="text/javascript" src="./sapContentPage.js"></script>
 
