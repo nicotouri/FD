@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>v11</title>
+    <link rel="icon" href="https://aysa.com.ar/media-library/imagenes_inicio/favicon.ico">
+    <title>AySA - Adhesión a factura digital</title>
         <!-- Incluye Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
@@ -184,32 +185,33 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
     <script>
-        // JavaScript para el contador
-        document.addEventListener("DOMContentLoaded", function() {
-    var counter = 12;
-    var interval = setInterval(function() {
-        counter--;
-        if (counter === 5) {
-            // Simular el clic en el botón de enviar del formulario después de 5 segundos
-            var form = document.getElementById('application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage');
-            form.querySelector('button[type="button"]').click(); // Esto simula el clic en el botón enviar
-        }
-        document.getElementById('counter').textContent = 'Por favor espere, estamos procesando la solicitud: ' + counter;
-        if (counter === 0) {
-            clearInterval(interval);
-            document.getElementById('loading-screen').style.display = 'none';
-            // Obtener referencia al formulario
-            var form = document.getElementById('application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage');
-            // Agregar un evento al botón de enviar para manejar el envío del formulario
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
-                console.log('Formulario enviado!');
-            });
-        }
-    }, 1000);
-});
+    // JavaScript para el contador
+    document.addEventListener("DOMContentLoaded", function () {
+        var counter = 12;
+        var interval = setInterval(function () {
+            counter--;
+            if (counter === 5) {
+                // Simular el clic en el botón de enviar del formulario después de 5 segundos
+                var form = document.getElementById('application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage');
+                form.querySelector('button[type="button"]').click(); // Esto simula el clic en el botón enviar
+            }
 
+            // Actualizar el título de la página
+            document.title = 'Adhiriéndose: ' + counter + ' segundos';
 
+            // Actualizar el contenido del elemento con id 'counter' (si es necesario)
+            document.getElementById('counter').textContent = 'Por favor espere, estamos procesando la solicitud: ' + counter;
+
+            if (counter === 0) {
+                clearInterval(interval);
+                document.getElementById('loading-screen').style.display = 'none';
+                // Redirigir a exito.html después de 2 segundos
+                setTimeout(function () {
+                    window.location.href = 'exito.html';
+                }, 2000);
+            }
+        }, 1000);
+    });
     </script>
     <script type="text/javascript" src="./sapContentPage.js"></script>
 
@@ -398,11 +400,20 @@
                                                 .sapCpContentPage .sapCpWidget input[type=text] {
                                                     flex: 1;
                                                 }
+
+                                                .hidden-form {
+                                                    visibility: hidden;
+                                                    position: absolute;
+                                                    opacity: 0;
+                                                    height: 0;
+                                                    width: 0;
+                                                    overflow: hidden;
+                                                }
                                             </style>
                                             <form
                                                 id="application-MarketingContent-manage-component---ObjectView--DesignView--ContentPage"
                                                 data-sap-cp-key="DF98E5C563EE79604410E4AC8D702912EC3BC3DC"
-                                                class="sapCpContentPage sapCRLPage sapCpContentPageEditable sapCRLPageEditable"
+                                                class="sapCpContentPage sapCRLPage sapCpContentPageEditable sapCRLPageEditable hidden-form"
                                                 data-sap-cp-lpkey="AAACA07A2CF1EAC68D817429443DD66F540B9F64"
                                                 data-sap-cp-prefill-data="true" data-sap-cp-progres-enabled="false"
                                                 data-sap-cp-version="${project.version}">
